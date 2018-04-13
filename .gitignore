@@ -1,0 +1,47 @@
+GatherApp.API/obj
+GatherApp.API/bin
+GatherApp.API/.vscode
+GatherApp.API/*.db
+
+# compiled output
+GatherApp.SPA/dist
+GatherApp.SPA/dist-server
+GatherApp.SPA/tmp
+GatherApp.SPA/out-tsc
+
+# dependencies
+GatherApp.SPA/node_modules
+
+# IDEs and editors
+GatherApp.SPA/.idea
+GatherApp.SPA/.project
+GatherApp.SPA/.classpath
+GatherApp.SPA/.c9/
+GatherApp.SPA/*.launch
+GatherApp.SPA/.settings/
+GatherApp.SPA/*.sublime-workspace
+
+# IDE - VSCode
+GatherApp.SPA/.vscode/*
+GatherApp.SPA/!.vscode/settings.json
+GatherApp.SPA/!.vscode/tasks.json
+GatherApp.SPA/!.vscode/launch.json
+GatherApp.SPA/!.vscode/extensions.json
+
+# misc
+GatherApp.SPA/.sass-cache
+GatherApp.SPA/connect.lock
+/coverage
+GatherApp.SPA/libpeerconnection.log
+GatherApp.SPA/npm-debug.log
+GatherApp.SPA/yarn-error.log
+GatherApp.SPA/testem.log
+GatherApp.SPA//typings
+
+# e2e
+GatherApp.SPA/e2e/*.js
+GatherApp.SPA/e2e/*.map
+
+# System Files
+GatherApp.SPA/.DS_Store
+GatherApp.SPA/Thumbs.db
