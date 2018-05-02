@@ -9,10 +9,11 @@ using GatherApp.API.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace GatherApp.API.Controllers
 {
-
+    [Authorize]
     [Route("api/[controller]")]
     public class MeetingController : Controller
     {
@@ -38,10 +39,12 @@ namespace GatherApp.API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Meeting meeting)
         {
-            //pegar a claim do token para pegar o id do usuário que está criando
-            meeting.User = new User{
-                Id = 1,
-            };
+
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            meeting.User.Id = currentUserId;
+
+            if(!ModelState.IsValid)
+                return BadRequest();
 
             var met = _mapper.Map<Meeting>(meeting);
             

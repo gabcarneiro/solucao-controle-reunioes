@@ -12,40 +12,41 @@ export class ScheduleMeetingComponent implements OnInit {
   model: any = {};
   meeting: Meeting;
   day: any;
-  startingTime: any;
-  finishingTime: any;
-  description: any;
-
 
   constructor(private meetingService: MeetingService, private alertify: AlertifyService) { }
 
   ngOnInit() {
+    this.meeting = {
+      description: '',
+      startingTime: new Date(),
+      finishingTime: new Date()
+    };
   }
 
   scheduleMeeting() {
     this.formatModel();
-    this.meetingService.scheduleMeeting(this.model).subscribe((meeting: Meeting) => {
-      this.meeting = meeting;
+    this.meetingService.scheduleMeeting(this.meeting).subscribe((meeting: Meeting) => {
+      this.alertify.success('Reunião agendada com sucesso!');
     }, error => {
       this.alertify.error(error);
-    })
+    });
   }
 
   formatModel() {
-    this.model = {
-      "description" : this.description,
-      "startingTime" : this.formatStartingTime().toJSON(),
-      "finishingTime" : this.formatFinishingTime().toJSON(), 
+    this.meeting = {
+      'description' : this.meeting.description,
+      'startingTime' : this.formatStartingTime(),
+      'finishingTime' : this.formatFinishingTime()
     };
   }
 
-  formatStartingTime(){
-    let date = new Date(Date.parse(this.day + 'T' + this.startingTime + ':00Z'));
+  formatStartingTime() {
+    const date = new Date(Date.parse(this.day + 'T' + this.meeting.startingTime + ':00Z'));
     return date;
   }
 
-  formatFinishingTime(){
-    let date = new Date(Date.parse(this.day + 'T' + this.finishingTime + ':00Z'));
+  formatFinishingTime() {
+    const date = new Date(Date.parse(this.day + 'T' + this.meeting.finishingTime + ':00Z'));
     return date;
   }
 

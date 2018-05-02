@@ -19,26 +19,25 @@ export class ConsultMeetingsComponent implements OnInit {
     this.loadMeetings();
   }
 
-  loadMeetings(){
+  loadMeetings() {
     this.meetingService.getMeetings().subscribe((meetings: Meeting[]) => {
       this.meetings = meetings;
     }, error => {
       this.alertify.error(error);
-    })
+    });
   }
 
-  getMeetingsByDay(){
-    console.log(this.day);
-    this.meetingService.getMeetingsByDay('"'+this.day+'"').subscribe((meetings: Meeting[]) => {
+  // '"' + this.day + '"'
+  getMeetingsByDay() {
+    this.meetingService.getMeetingsByDay(new Date(this.day)).subscribe((meetings: Meeting[]) => {
       this.meetings = meetings;
     }, error => {
       this.alertify.error(error);
-    })
-    
+    });
   }
 
-  format(date){
-    return new Date(date).toTimeString();
+  format(date) {
+    return new Date(date).toLocaleTimeString();
   }
 
 }

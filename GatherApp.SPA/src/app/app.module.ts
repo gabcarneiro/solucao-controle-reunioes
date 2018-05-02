@@ -1,3 +1,4 @@
+import { AdminComponent } from './admin/admin/admin.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -12,7 +13,7 @@ import { AlertifyService } from './_services/alertify.service';
 import { RouterModule } from '@angular/router';
 
 
-import  { ConsultMeetingsComponent } from './meetings/consult-meetings/consult-meetings.component';
+import { ConsultMeetingsComponent } from './meetings/consult-meetings/consult-meetings.component';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
@@ -34,7 +35,8 @@ import { ValueComponent } from './value/value.component';
     ValueComponent,
     MeetingsComponent,
     ScheduleMeetingComponent,
-    ConsultMeetingsComponent
+    ConsultMeetingsComponent,
+    AdminComponent
 ],
   imports: [
     BrowserModule,

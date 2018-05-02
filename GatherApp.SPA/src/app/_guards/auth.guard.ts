@@ -6,16 +6,15 @@ import { AlertifyService } from '../_services/alertify.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  
-  constructor (private authService: AuthService, private router: Router, private alertify: AlertifyService){}
+
+  constructor (private authService: AuthService, private router: Router, private alertify: AlertifyService) {}
 
   canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-    if(this.authService.loggedIn()){
+    if (this.authService.loggedIn()) {
       return true;
     }
     this.alertify.error('Voce precisa estar logado para acessar esta página!');
     this.router.navigate(['/home']);
     return false;
   }
-  
 }

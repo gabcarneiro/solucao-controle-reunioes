@@ -18,7 +18,7 @@ export class MeetingService {
     }
 
     getMeetingsByDay(date): Observable<Meeting[]> {
-      return this.authHttp.post(this.baseUrl + 'meeting/day',date)
+      return this.authHttp.post(this.baseUrl + 'meeting/day', date)
       .map(response => <Meeting[]>response.json())
       .catch(this.handleError);
     }
@@ -30,7 +30,7 @@ export class MeetingService {
     }
 
     private handleError(error: any) {
-        let applicationError = error.headers.get('Application-Error');
+        const applicationError = error.headers.get('Application-Error');
         if (applicationError) {
           return Observable.throw(applicationError);
         }
@@ -38,7 +38,7 @@ export class MeetingService {
         let modelStateErrors = '';
         if (serverError) {
           for (const key in serverError) {
-            if (serverError[key]) modelStateErrors += serverError[key] + '\n';
+            if (serverError[key]) { modelStateErrors += serverError[key] + '\n'; }
           }
         }
         return Observable.throw(modelStateErrors || 'Server error');

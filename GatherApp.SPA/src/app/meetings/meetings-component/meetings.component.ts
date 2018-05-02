@@ -8,10 +8,6 @@ import { Meeting } from '../../_models/Meeting';
 })
 export class MeetingsComponent implements OnInit {
 
-  meetings : Meeting[];
-  //model : any = {};
-  description = "";
-
   constructor() { }
 
   ngOnInit() {
