@@ -10,5 +10,9 @@ namespace GatherApp.API.Dtos
         [Required]
         [StringLength(20, MinimumLength = 6, ErrorMessage = "Informe uma senha entre 6 e 20 caracteres!")]
         public string Password { get; set; }
+        [Required]
+        public string Name {get; set;}
+        public string LastName {get; set;}
+        public string Department {get; set;}
     }
 }

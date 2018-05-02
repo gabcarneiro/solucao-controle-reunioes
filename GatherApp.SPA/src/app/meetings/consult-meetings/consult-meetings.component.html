@@ -1,0 +1,14 @@
+<h2>Selecione o dia para consulta: </h2>
+<form #consultMeetings="ngForm"  (ngSubmit)="getMeetingsByDay()">
+  <input type="date"  [(ngModel)]="day" name="day">
+  <button type="submit" class="btn btn-sucess">Consultar</button>
+</form>
+
+<ul>
+  <li *ngFor="let meeting of meetings">
+    <p>Reuinião: {{meeting.description}}</p>
+    <p>Horario início: {{format(meeting.startingTime)}}</p>
+    <p>Horario fim: {{format(meeting.startingTime)}}</p>
+  </li>
+</ul>
+<span *ngIf=(!meetings)>Não há reuniões para o dia selecionado</span>

@@ -15,6 +15,9 @@
         <li>
           <a *ngIf="loggedIn()" [routerLink]="['/values']" routerLinkActive="router-link-active" >Values</a>
         </li>
+        <li>
+          <a [routerLink]="['/meetings']" routerLinkActive="router-link-active" >Reuniões</a>
+        </li>
       </ul>
 
       <form *ngIf="!loggedIn()" #loginForm="ngForm" class="navbar-form navbar-right" (ngSubmit)="login()">

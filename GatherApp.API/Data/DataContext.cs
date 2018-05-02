@@ -8,5 +8,13 @@ namespace GatherApp.API.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options){}
         public DbSet<Value> Values { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Meeting> Meetings { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Meetings)
+                .WithOne(m =>m.User);
+        }
     }
 }

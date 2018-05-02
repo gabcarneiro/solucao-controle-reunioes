@@ -17,6 +17,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http;
 using GatherApp.API.Helpers;
+using AutoMapper;
 
 namespace GatherApp.API
 {
@@ -34,9 +35,12 @@ namespace GatherApp.API
         {
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvc();
+            
             services.AddCors();
+            services.AddAutoMapper();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IMeetingRepository, MeetingRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -47,6 +51,10 @@ namespace GatherApp.API
                         ValidateAudience = false
                     };
                 });
+            services.AddMvc().AddJsonOptions(opt =>
+            {
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

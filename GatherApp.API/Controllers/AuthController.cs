@@ -43,7 +43,10 @@ namespace GatherApp.API.Controllers
 
             var userToCreate = new User
             {
-                Username = userForRegister.Username
+                Username = userForRegister.Username,
+                Name = userForRegister.Name,
+                LastName = userForRegister.LastName,
+                Department = userForRegister.Department
             };
 
             var createdUser = await _repo.Register(userToCreate, userForRegister.Password);
