@@ -2,7 +2,7 @@
   <form #createMeeting="ngForm"  (ngSubmit)="scheduleMeeting()">
     <div class="form-group">
       <label for="description">Descrição</label>
-      <input type="text" placeholder="Descrição" id="meeting.description" [(ngModel)]="description" name="description">
+      <input type="text" placeholder="Descrição" id="description" [(ngModel)]="model.description" name="description">
     </div>
 
     <div class="form-group">
@@ -12,13 +12,13 @@
 
     <div class="form-group">
       <label for="startingTime">Horario:</label>
-      <input type="time" id="startingTime" [(ngModel)]="meeting.startingTime" name="startingTime" min="07:00:00" max="18:00:00" 
+      <input type="time" id="startingTime" [(ngModel)]="model.startingTime" name="startingTime" min="07:00:00" max="18:00:00" 
         pattern="[0-9]{2}:[0-3]{2}">
     </div>
 
     <div class="form-group">
       <label for="finishingTime">Até:</label>
-      <input type="time" id="finishingTime" [(ngModel)]="meeting.finishingTime" name="finishingTime" min="07:00:00" max="18:00:00" 
+      <input type="time" id="finishingTime" [(ngModel)]="model.finishingTime" name="finishingTime" min="07:00:00" max="18:00:00" 
         pattern="[0-9]{2}:[0-3]{2}">
     </div>
 

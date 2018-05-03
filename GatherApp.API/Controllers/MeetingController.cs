@@ -39,17 +39,18 @@ namespace GatherApp.API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Meeting meeting)
         {
+            var user = new User() {
+                Id = 1
+            };
+            meeting.User = user;
 
-            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            meeting.User.Id = currentUserId;
+            //if(!ModelState.IsValid)
+            //    return BadRequest();
 
-            if(!ModelState.IsValid)
-                return BadRequest();
-
-            var met = _mapper.Map<Meeting>(meeting);
+            //var met = _mapper.Map<MeetingDto>(meeting);
             
             _repo.Save(meeting);
-            return Ok(met);
+            return StatusCode(201);
         }
 
         [HttpGet("{id}")]

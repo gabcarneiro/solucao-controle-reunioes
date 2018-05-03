@@ -10,22 +10,17 @@ import { AlertifyService } from '../../_services/alertify.service';
 })
 export class ScheduleMeetingComponent implements OnInit {
   model: any = {};
-  meeting: Meeting;
   day: any;
 
   constructor(private meetingService: MeetingService, private alertify: AlertifyService) { }
 
-  ngOnInit() {
-    this.meeting = {
-      description: '',
-      startingTime: new Date(),
-      finishingTime: new Date()
-    };
-  }
+  ngOnInit() {}
 
   scheduleMeeting() {
+    console.log(this.model);
     this.formatModel();
-    this.meetingService.scheduleMeeting(this.meeting).subscribe((meeting: Meeting) => {
+    console.log(this.model)
+    this.meetingService.scheduleMeeting(this.model).subscribe((model: Meeting) => {
       this.alertify.success('Reunião agendada com sucesso!');
     }, error => {
       this.alertify.error(error);
@@ -33,21 +28,21 @@ export class ScheduleMeetingComponent implements OnInit {
   }
 
   formatModel() {
-    this.meeting = {
-      'description' : this.meeting.description,
+    this.model = {
+      'description' : this.model.description,
       'startingTime' : this.formatStartingTime(),
       'finishingTime' : this.formatFinishingTime()
     };
   }
 
   formatStartingTime() {
-    const date = new Date(Date.parse(this.day + 'T' + this.meeting.startingTime + ':00Z'));
-    return date;
+    const date = new Date(this.day + 'T' + this.model.startingTime);
+    return date.toJSON();
   }
 
   formatFinishingTime() {
-    const date = new Date(Date.parse(this.day + 'T' + this.meeting.finishingTime + ':00Z'));
-    return date;
+    const date = new Date(this.day + 'T' + this.model.finishingTime);
+    return date.toJSON();
   }
 
 
