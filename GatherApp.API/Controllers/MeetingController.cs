@@ -37,23 +37,24 @@ namespace GatherApp.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Meeting meeting)
+        public IActionResult Post([FromBody]MeetingDto meeting)
         {
-            var user = new User() {
-                Id = 1
-            };
-            meeting.User = user;
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            meeting.User = new UserForListDto { Id = currentUserId};
 
-            //if(!ModelState.IsValid)
-            //    return BadRequest();
+            if(!ModelState.IsValid)
+                return BadRequest();
 
-            //var met = _mapper.Map<MeetingDto>(meeting);
+            var metetingToCreate = _mapper.Map<Meeting>(meeting);
             
-            _repo.Save(meeting);
-            return StatusCode(201);
+            var createdMeeting = _repo.Save(metetingToCreate);
+
+            var meetingToReturn = _mapper.Map<MeetingDto>(createdMeeting);
+
+            return CreatedAtRoute("GetMeeting", new {controller = "Meeting", id = createdMeeting.Id}, meetingToReturn);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="GetMeeting")]
         public IActionResult GetMeeting(int id)
         {
             var meeting = _repo.GetById(id);

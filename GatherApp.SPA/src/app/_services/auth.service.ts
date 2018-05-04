@@ -12,6 +12,7 @@ export class AuthService {
   userToken: any;
   decodedToken: any;
   jwtHelper: JwtHelper = new JwtHelper();
+  currentUser: any = {};
 
   constructor(private http: Http) {}
 
@@ -20,10 +21,12 @@ export class AuthService {
       .post(this.baseUrl + 'login', model, this.requestOptions())
       .map((response: Response) => {
         const user = response.json();
-        if (user) {
+        if (user && user.tokenString) {
           localStorage.setItem('token', user.tokenString);
+          localStorage.setItem('user', JSON.stringify(user.user));
           this.decodedToken = this.jwtHelper.decodeToken(user.tokenString);
           this.userToken = user.tokenString;
+          this.currentUser = user.user;
         }
       })
       .catch(this.handleError);
@@ -39,7 +42,7 @@ export class AuthService {
   }
 
   private handleError(error: any) {
-    let applicationError = error.headers.get('Application-Error');
+    const applicationError = error.headers.get('Application-Error');
     if (applicationError) {
       return Observable.throw(applicationError);
     }
@@ -47,7 +50,7 @@ export class AuthService {
     let modelStateErrors = '';
     if (serverError) {
       for (const key in serverError) {
-        if (serverError[key]) modelStateErrors += serverError[key] + '\n';
+        if (serverError[key]) { modelStateErrors += serverError[key] + '\n'; }
       }
     }
     return Observable.throw(modelStateErrors || 'Server error');

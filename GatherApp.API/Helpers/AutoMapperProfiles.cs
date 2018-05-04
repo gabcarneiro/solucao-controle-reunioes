@@ -9,13 +9,16 @@ namespace GatherApp.API.Helpers
         
         public AutoMapperProfiles()
         {
+            
             CreateMap<Meeting,MeetingDto>()
                 .ForMember(
                     dest => dest.User,
                     opt => opt.MapFrom(src => src.User)
                 );
-
+    
             CreateMap<User,UserForListDto>();
+            CreateMap<UserForListDto,User>();
+            CreateMap<MeetingDto,Meeting>();
         }
 
     }
