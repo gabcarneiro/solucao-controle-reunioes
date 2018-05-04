@@ -2,8 +2,12 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import {FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDatepickerModule, BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+defineLocale('pt-br', ptBrLocale);
 import { AuthGuard } from './_guards/auth.guard';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { appRoutes } from './routes';
@@ -45,13 +49,16 @@ import { ValueComponent } from './value/value.component';
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     TabsModule.forRoot(),
-    AuthModule
+    AuthModule,
+    ReactiveFormsModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     AuthService,
     AlertifyService,
     AuthGuard,
-    MeetingService
+    MeetingService,
+    BsLocaleService
   ],
   bootstrap: [AppComponent]
 })

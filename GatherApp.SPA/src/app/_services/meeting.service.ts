@@ -23,9 +23,8 @@ export class MeetingService {
       .catch(this.handleError);
     }
 
-    scheduleMeeting(model): Observable<Meeting> {
+    registerMeeting(model): Observable<Meeting> {
       return this.authHttp.post(this.baseUrl + 'meeting', model)
-      .map(response => <Meeting>response.json())
       .catch(this.handleError);
     }
 

@@ -1,33 +1,37 @@
-<div class="row text-center" >
-  <form #createMeeting="ngForm"  (ngSubmit)="scheduleMeeting()">
-    <div class="form-group">
+<div class="row text-center col-md-4 col-md-offset-4">
+  <form [formGroup]="meetingRegisterForm" (ngSubmit)=" scheduleMeeting()">
+
+    <div class="form-group" [ngClass]="{'has-error' : meetingRegisterForm.get('description').errors && meetingRegisterForm.get('description').touched}">
       <label for="description">Descrição</label>
-      <input type="text" placeholder="Descrição" id="description" [(ngModel)]="model.description" name="description">
+      <input type="text" placeholder="Descrição" class="form-control" formControlName="description">
+      <span class="help-block" *ngIf="meetingRegisterForm.get('description').hasError('required') && meetingRegisterForm.get('description').touched">
+        Informe uma descrição
+      </span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" >
       <label for="day">Dia</label>
-      <input type="date" id="starting-time" [(ngModel)]="day" name="day" min="2018-04-01T08:30" max="2018-05-30T16:30">
+      <input type="text" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" id="starting-time" class="form-control" formControlName="day">
     </div>
 
     <div class="form-group">
       <label for="startingTime">Horario:</label>
-      <input type="time" id="startingTime" [(ngModel)]="model.startingTime" name="startingTime" min="07:00:00" max="18:00:00" 
-        pattern="[0-9]{2}:[0-3]{2}">
+      <input type="time" id="startingTime" class="form-control" formControlName="startingTime">
     </div>
 
     <div class="form-group">
       <label for="finishingTime">Até:</label>
-      <input type="time" id="finishingTime" [(ngModel)]="model.finishingTime" name="finishingTime" min="07:00:00" max="18:00:00" 
-        pattern="[0-9]{2}:[0-3]{2}">
+      <input type="time" id="finishingTime" class="form-control" formControlName="finishingTime">
     </div>
 
 
-
-
     <div class="form-group ">
-        <button class="btn btn-primary" type="submit">Agendar</button>
-        <button class="btn btn-danger" type="button">Cancelar</button>
-      </div>
-  </form> 
+      <button class="btn btn-primary" type="submit">Agendar</button>
+      <button class="btn btn-danger" type="button">Cancelar</button>
+    </div>
+  </form>
+
+  <p>Form value: {{meetingRegisterForm.value | json}}</p>
+  <p>Form status: {{meetingRegisterForm.status}}</p>
+  <p>Model: {{model | json}}</p>
 </div>
