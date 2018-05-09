@@ -4,7 +4,7 @@ using GatherApp.API.Models;
 
 namespace GatherApp.API.Data
 {
-    public interface IMeetingRepository : Repository<Meeting>
+    public interface IMeetingRepository : IRepository<Meeting>
     {
         Meeting Save(Meeting meeting);
         IEnumerable<Meeting> GetMeetingsByUserId(int userId);

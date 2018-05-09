@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GatherApp.API.Data
 {
-    public class UserRepository : IUserRepository, Repository<User>
+    public class UserRepository : IUserRepository, IRepository<User>
     {
         private readonly DataContext _context;
 
