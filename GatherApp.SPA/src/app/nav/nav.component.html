@@ -13,13 +13,10 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-          <a *ngIf="loggedIn()" [routerLink]="['/values']" routerLinkActive="router-link-active" >Values</a>
+          <a *ngIf="loggedIn()" [routerLink]="['/meetings']" routerLinkActive="router-link-active" >Reuniões</a>
         </li>
         <li>
-          <a [routerLink]="['/meetings']" routerLinkActive="router-link-active" >Reuniões</a>
-        </li>
-        <li>
-          <a [routerLink]="['/admin']" routerLinkActive="router-link-active" >ADMIN</a>
+          <a *ngIf="loggedIn()" [routerLink]="['/admin']" routerLinkActive="router-link-active" >ADMIN</a>
         </li>
 
       </ul>

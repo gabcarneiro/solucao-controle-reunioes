@@ -50,7 +50,6 @@ export class ScheduleMeetingComponent implements OnInit {
     });
   }
 
-  // TODO validar se a hora final é maior que a hora inicial
   meetingTimeValidator (g: FormGroup) {
     return g.get('finishingTime').value > g.get('startingTime').value ? null : {'missmatch' : true};
   }

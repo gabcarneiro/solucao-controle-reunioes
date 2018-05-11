@@ -1,3 +1,4 @@
+import { MeetingCardComponent } from './meetings/meeting-card/meeting-card.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -24,22 +25,16 @@ import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { MeetingsComponent } from './meetings/meetings-component/meetings.component';
 import { ScheduleMeetingComponent } from './meetings/schedule-meeting/schedule-meeting.component';
-import { ValueComponent } from './value/value.component';
-
-
-
-
-
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
-    ValueComponent,
     MeetingsComponent,
     ScheduleMeetingComponent,
     ConsultMeetingsComponent,
+    MeetingCardComponent,
     AdminComponent
 ],
   imports: [

@@ -1,14 +1,22 @@
-<h2>Selecione o dia para consulta: </h2>
-<form #consultMeetings="ngForm"  (ngSubmit)="getMeetingsByDay()">
-  <input type="date"  [(ngModel)]="day" name="day">
-  <button type="submit" class="btn btn-sucess">Consultar</button>
-</form>
+<div class="row text-center col-md-4 col-md-offset-4">
+  <h2>Selecione o dia para consulta: </h2>
+  <form [formGroup]="daySelectorForm" (ngSubmit)="getMeetingsByDay()">
+    <div class="form-group" [ngClass]="{'has-error' : daySelectorForm.get('day').errors && daySelectorForm.get('day').touched}">
+      <label for="day">Dia</label>
+      <input type="text" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" id="starting-time" class="form-control" formControlName="day" placeholder="Clique para selecioanr um dia">
+      <span class="help-block" *ngIf="daySelectorForm.get('day').hasError('required') && daySelectorForm.get('day').touched">
+        Informe um dia para busca!
+      </span>
+    </div>
+    <button type="submit" class="btn btn-sucess">Consultar</button>
 
-<ul>
-  <li *ngFor="let meeting of meetings">
-    <p>Reuinião: {{meeting.description}}</p>
-    <p>Horario início: {{format(meeting.startingTime)}}</p>
-    <p>Horario fim: {{format(meeting.startingTime)}}</p>
-  </li>
-</ul>
-<span *ngIf=(!meetings)>Não há reuniões para o dia selecionado</span>
+  </form>
+
+  <ul>
+    <li *ngFor="let meeting of meetings">
+      <app-meeting-card [meeting]="meeting"></app-meeting-card>
+    </li>
+  </ul>
+
+
+</div>

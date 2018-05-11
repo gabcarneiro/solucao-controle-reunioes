@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Meeting } from '../../_models/Meeting';
 import { MeetingService } from '../../_services/meeting.service';
 import { AlertifyService } from '../../_services/alertify.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BsLocaleService, BsDatepickerConfig } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-consult-meetings',
@@ -9,14 +11,26 @@ import { AlertifyService } from '../../_services/alertify.service';
   styleUrls: ['./consult-meetings.component.css']
 })
 export class ConsultMeetingsComponent implements OnInit {
-
+  locale = 'pt-br';
+  model: any = {};
+  daySelectorForm: FormGroup;
+  bsConfig: Partial<BsDatepickerConfig>;
   meetings: Meeting[];
-  day: any;
 
-  constructor(private meetingService: MeetingService, private alertify: AlertifyService) { }
+  constructor(
+    private meetingService: MeetingService,
+    private alertify: AlertifyService,
+    private fb: FormBuilder,
+    private _localeService: BsLocaleService
+    ) {}
 
   ngOnInit() {
-    this.loadMeetings();
+    this._localeService.use(this.locale);
+    this.bsConfig = {
+      dateInputFormat: 'DD/MM/YYYY',
+      containerClass: 'theme-green'
+    };
+    this.createForm();
   }
 
   loadMeetings() {
@@ -27,9 +41,15 @@ export class ConsultMeetingsComponent implements OnInit {
     });
   }
 
+  createForm() {
+    this.daySelectorForm = this.fb.group({
+      day: [null, Validators.required],
+    });
+  }
+
   // '"' + this.day + '"'
   getMeetingsByDay() {
-    this.meetingService.getMeetingsByDay(new Date(this.day)).subscribe((meetings: Meeting[]) => {
+    this.meetingService.getMeetingsByDay(new Date(this.daySelectorForm.get('day').value)).subscribe((meetings: Meeting[]) => {
       this.meetings = meetings;
     }, error => {
       this.alertify.error(error);

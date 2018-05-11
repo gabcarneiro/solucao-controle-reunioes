@@ -11,17 +11,17 @@
 
     <div class="form-group" >
       <label for="day">Dia</label>
-      <input type="text" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" id="starting-time" class="form-control" formControlName="day">
+      <input type="text" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" id="starting-time" class="form-control" formControlName="day" placeholder="Clique para selecioanr um dia">
     </div>
 
     <div class="form-group">
       <label for="startingTime">Horario:</label>
-      <input type="time" id="startingTime" class="form-control" formControlName="startingTime">
+      <input type="time" id="startingTime" class="form-control" formControlName="startingTime" min="07:30" max="18:00">
     </div>
 
     <div class="form-group">
       <label for="finishingTime">Até:</label>
-      <input type="time" id="finishingTime" class="form-control" formControlName="finishingTime">
+      <input type="time" id="finishingTime" class="form-control" formControlName="finishingTime"  min="07:30" max="18:00">
     </div>
 
 
