@@ -25,6 +25,8 @@ import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { MeetingsComponent } from './meetings/meetings-component/meetings.component';
 import { ScheduleMeetingComponent } from './meetings/schedule-meeting/schedule-meeting.component';
+import { RegisterUserComponent } from './admin/register-user/register-user.component';
+import { UserService } from './_services/user.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { ScheduleMeetingComponent } from './meetings/schedule-meeting/schedule-m
     ScheduleMeetingComponent,
     ConsultMeetingsComponent,
     MeetingCardComponent,
-    AdminComponent
+    AdminComponent,
+    RegisterUserComponent
 ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { ScheduleMeetingComponent } from './meetings/schedule-meeting/schedule-m
     AlertifyService,
     AuthGuard,
     MeetingService,
-    BsLocaleService
+    BsLocaleService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
