@@ -28,7 +28,7 @@ export class NavComponent implements OnInit {
       error => {
         this.alertify.error('Login ou senha inválido');
       }, () => {
-        this.router.navigate(['/values']);
+        this.router.navigate(['/meetings']);
       }
     );
   }

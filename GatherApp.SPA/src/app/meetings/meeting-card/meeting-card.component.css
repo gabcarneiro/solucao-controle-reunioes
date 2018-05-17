@@ -1,4 +1,9 @@
-.panel-body{
-    margin: 15px;
+.panel-body {
+    width: 235px;
+    height: 150px;
+    display: inline-block;
 }
 
+.panel-default{
+    margin: 15px;
+}

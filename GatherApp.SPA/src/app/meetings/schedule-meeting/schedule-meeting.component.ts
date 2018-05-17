@@ -45,6 +45,7 @@ export class ScheduleMeetingComponent implements OnInit {
     this.formatModel();
     this.meetingService.registerMeeting(this.model).subscribe( () => {
       this.alertify.success('Reunião agendada com sucesso!');
+      this.meetingRegisterForm.reset();
     }, error => {
       this.alertify.error(error);
     });

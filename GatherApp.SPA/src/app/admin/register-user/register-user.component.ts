@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AlertifyService } from '../../_services/alertify.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { UserService } from '../../_services/user.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { UserService } from '../../_services/user.service';
   styleUrls: ['./register-user.component.css']
 })
 export class RegisterUserComponent implements OnInit {
-  model: any = {};
+  model: any;
   day: any;
   userRegisterForm: FormGroup;
 
@@ -21,7 +21,6 @@ export class RegisterUserComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    this.model = {};
   }
 
   createForm() {
@@ -31,30 +30,24 @@ export class RegisterUserComponent implements OnInit {
       department: [''],
       username: ['', Validators.required],
       password: ['', Validators.required],
-      confirmpassword: ['', Validators.required],
-
-    }, this.userTimeValidator);
+      confirmPassword: ['', Validators.required],
+    },{validator: this.passwordMissmatchValidator});
   }
 
   formatModel(){
-    this.model = {
-      username: this.userRegisterForm.get('username'),
-      password: this.userRegisterForm.get('password'),
-      name: this.userRegisterForm.get('name'),
-      lastName: this.userRegisterForm.get('lastName'),
-      department: this.userRegisterForm.get('department')
-    }
+    this.model = this.userRegisterForm.value;
   }
   registerUser() {
-    this.formatModel();
-    this.userService.registerUser(this.model).subscribe( () => {
+    this.userService.registerUser(this.userRegisterForm.value).subscribe( () => {
       this.alertify.success('Usuário cadastrado com sucesso!');
+      this.userRegisterForm.reset();
     }, error => {
       this.alertify.error(error);
     });
   }
-  userTimeValidator (g: FormGroup) {
-    return g.get('finishingTime').value > g.get('startingTime').value ? null : {'missmatch' : true};
+
+  passwordMissmatchValidator (AC: AbstractControl) {
+    return AC.get('password').value === AC.get('confirmPassword').value ? null : {'missmatch' : true};
   }
 
 }

@@ -1,49 +1,52 @@
 <div class="row text-center col-md-4 col-md-offset-4">
     <form [formGroup]="userRegisterForm" (ngSubmit)=" registerUser()">
   
-      <div class="form-group" [ngClass]="{'has-error' : userRegisterForm.get('username').errors && userRegisterForm.get('username').touched}">
-        <label for="description">Nome:</label>
-        <input type="text" placeholder="Nome" class="form-control" formControlName="username">
-        <span class="help-block" *ngIf="userRegisterForm.get('username').hasError('required') && userRegisterForm.get('username').touched">
+      <div class="form-group" [ngClass]="{'has-error' : userRegisterForm.get('name').errors && userRegisterForm.get('name').touched}">
+        <label for="name">Nome:</label>
+        <input type="text" placeholder="Nome" class="form-control" formControlName="name" name="name">
+        <span class="help-block" *ngIf="userRegisterForm.get('name').hasError('required') && userRegisterForm.get('name').touched">
           Informe o nome do usuário
         </span>
       </div>
-  
-      <div class="form-group" [ngClass]="{'has-error' : userRegisterForm.get('username').errors && userRegisterForm.get('username').touched}">
-          <label for="description">Login:</label>
-          <input type="text" placeholder="Informe o login" class="form-control" formControlName="username">
-          <span class="help-block" *ngIf="userRegisterForm.get('username').hasError('required') && userRegisterForm.get('username').touched">
-            Informe um login
-          </span>
-      </div>
 
       <div class="form-group" [ngClass]="{'has-error' : userRegisterForm.get('lastName').errors && userRegisterForm.get('lastName').touched}">
-          <label for="description">Sobrenome:</label>
-          <input type="text" placeholder="Sobrenome" class="form-control" formControlName="lastName">
+          <label for="lastName">Sobrenome:</label>
+          <input type="text" placeholder="Sobrenome" class="form-control" formControlName="lastName" name="lastName">
           <span class="help-block" *ngIf="userRegisterForm.get('lastName').hasError('required') && userRegisterForm.get('lastName').touched">
             Informe o nome do usuário
           </span>
       </div>
 
+      <div class="form-group">
+        <label for="department">Setor:</label>
+        <input type="text" placeholder="Informe o setor" class="form-control" formControlName="department" name="department">
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error' : userRegisterForm.get('username').errors && userRegisterForm.get('username').touched}">
+        <label for="username">Login:</label>
+        <input type="text" placeholder="Informe o login" class="form-control" formControlName="username" name="username">
+        <span class="help-block" *ngIf="userRegisterForm.get('username').hasError('required') && userRegisterForm.get('username').touched">
+          Informe um login
+        </span>
+    </div>
+
       <div class="form-group" [ngClass]="{'has-error' : userRegisterForm.get('password').errors && userRegisterForm.get('password').touched}">
-          <label for="description">Senha:</label>
-          <input type="password" placeholder="Digite uma senha" class="form-control" formControlName="password">
-          <span class="help-block" *ngIf="userRegisterForm.get('password').hasError('required') && userRegisterForm.get('password').touched">
+          <label for="password">Senha:</label>
+          <input type="password" placeholder="Digite uma senha" class="form-control" formControlName="password" name="password">
+          <span class="help-block" *ngIf="userRegisterForm.get('password').hasError('required')  && userRegisterForm.get('confirmPassword').hasError('missmatch') && userRegisterForm.get('password').touched">
             Informe uma senha
           </span>
       </div>
 
       <div class="form-group" [ngClass]="{'has-error' : userRegisterForm.get('confirmPassword').errors && userRegisterForm.get('confirmPassword').touched}">
-          <label for="description">Confirme a senha:</label>
-          <input type="password" placeholder="Confirme a senha" class="form-control" formControlName="confirmPassword">
+          <label for="confirmPassword">Confirme a senha:</label>
+          <input type="password" placeholder="Confirme a senha" class="form-control" formControlName="confirmPassword" name="confirmPassword">
           <span class="help-block" *ngIf="userRegisterForm.get('confirmPassword').hasError('required') && userRegisterForm.get('confirmPassword').touched">
             Confirme a senha
           </span>
-      </div>
-
-      <div class="form-group">
-          <label for="description">Setor:</label>
-          <input type="text" placeholder="Informe o setor" class="form-control" formControlName="department">
+          <span class="help-block" *ngIf="userRegisterForm.get('confirmPassword').hasError('missmatch') && userRegisterForm.get('confirmPassword').touched">
+            Confirme a senha
+          </span>
       </div>
 
       <div class="form-group ">
@@ -52,4 +55,7 @@
       </div>
     </form>
   
+    <p>Form value: {{userRegisterForm.value | json}}</p>
+    <p>Form status: {{userRegisterForm.status}}</p>
+    <p>Model: {{model | json}}</p>
   </div>
