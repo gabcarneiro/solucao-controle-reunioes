@@ -43,9 +43,15 @@ namespace GatherApp.API.Controllers
             meeting.User = new UserForListDto { Id = currentUserId};
 
             if(!ModelState.IsValid)
-                return BadRequest();
+                return BadRequest(ModelState);
 
             var metetingToCreate = _mapper.Map<Meeting>(meeting);
+
+            if(!_repo.IsDateAvaliable(metetingToCreate)){
+                ModelState.AddModelError("Horário", "Horário indisponível, selecione outro horário!");
+                return BadRequest(ModelState);
+            }
+                
             
             var createdMeeting = _repo.Save(metetingToCreate);
 
