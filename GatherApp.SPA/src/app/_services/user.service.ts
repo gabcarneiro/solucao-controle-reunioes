@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { Meeting } from '../_models/meeting';
+import { Meeting } from '../_models/Meeting';
 import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()

@@ -11,7 +11,7 @@
 
     <div class="form-group" >
       <label for="day">Dia</label>
-      <input type="text" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" id="starting-time" class="form-control" formControlName="day" placeholder="Clique para selecioanr um dia">
+      <input type="text" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" id="starting-time" class="form-control" formControlName="day" placeholder="Clique para selecionar um dia">
     </div>
 
     <div class="form-group">
@@ -27,7 +27,7 @@
 
     <div class="form-group ">
       <button class="btn btn-primary" type="submit">Agendar</button>
-      <button class="btn btn-danger" type="button">Cancelar</button>
+      <button class="btn btn-danger" type="button" (click)="resetForm();">Cancelar</button>
     </div>
   </form>
 

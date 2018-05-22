@@ -1,9 +1,11 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="text-center meeting-card">
-      <p>{{meeting.description}}</p>
-      <p>{{format(meeting.startingTime)}}</p>
-      <p>{{format(meeting.finishingTime)}}</p>
+      <p><b>Descrição: {{meeting.description}}</b></p>
+      <p>Organizador: {{meeting.user.name}}</p>
+      <p>Sala: Sala 01</p>
+      <p>Horário de início: {{formatTime(meeting.startingTime)}}</p>
+      <p>Horário fim: {{formatTime(meeting.finishingTime)}}</p>
     </div>
   </div>
 </div>

@@ -25,16 +25,20 @@ export class RegisterUserComponent implements OnInit {
 
   createForm() {
     this.userRegisterForm = this.fb.group({
-      name: ['',Validators.required],
-      lastName: ['',Validators.required],
+      name: ['', Validators.required],
+      lastName: ['', Validators.required],
       department: [''],
       username: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-    },{validator: this.passwordMissmatchValidator});
+    }, {validator: this.passwordMissmatchValidator});
   }
 
-  formatModel(){
+  resetForm() {
+    this.userRegisterForm.reset();
+  }
+
+  formatModel() {
     this.model = this.userRegisterForm.value;
   }
   registerUser() {

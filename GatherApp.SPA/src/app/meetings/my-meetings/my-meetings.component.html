@@ -1,0 +1,11 @@
+<h2>Minhas reuniões:</h2>
+
+<div class="row text-center"><button class="btn btn-info" (click)="getMeetings();">Atualizar</button></div>
+
+<div class="row text-center col-md-10 col-md-offset-1">
+  <ul>
+    <li *ngFor="let meeting of meetings" style="display: inline-block;">
+      <app-meeting-card [meeting]="meeting"></app-meeting-card>
+    </li>
+  </ul>
+</div>  

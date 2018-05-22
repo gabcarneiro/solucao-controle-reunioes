@@ -2,7 +2,7 @@
   <h3>Selecione o dia para consulta: </h3>
   <form [formGroup]="daySelectorForm" (ngSubmit)="getMeetingsByDay()">
     <div class="form-group" [ngClass]="{'has-error' : daySelectorForm.get('day').errors && daySelectorForm.get('day').touched}">
-      <input type="text" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" id="starting-time" class="form-control" formControlName="day" placeholder="Clique para selecioanr um dia">
+      <input type="text" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" id="starting-time" class="form-control" formControlName="day" placeholder="Clique para selecionar um dia">
       <span class="help-block" *ngIf="daySelectorForm.get('day').hasError('required') && daySelectorForm.get('day').touched">
         Informe um dia para busca!
       </span>

@@ -27,6 +27,7 @@ import { MeetingsComponent } from './meetings/meetings-component/meetings.compon
 import { ScheduleMeetingComponent } from './meetings/schedule-meeting/schedule-meeting.component';
 import { RegisterUserComponent } from './admin/register-user/register-user.component';
 import { UserService } from './_services/user.service';
+import { MyMeetingsComponent } from './meetings/my-meetings/my-meetings.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UserService } from './_services/user.service';
     ConsultMeetingsComponent,
     MeetingCardComponent,
     AdminComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    MyMeetingsComponent
 ],
   imports: [
     BrowserModule,

@@ -1,9 +1,13 @@
 .panel-body {
-    width: 235px;
-    height: 150px;
+    width: 275px;
+    height: 190px;
     display: inline-block;
 }
 
 .panel-default{
-    margin: 15px;
+    margin: 50px;
+}
+
+button {
+    margin-bottom: 30px;
 }

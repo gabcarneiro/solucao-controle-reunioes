@@ -51,6 +51,10 @@ export class ScheduleMeetingComponent implements OnInit {
     });
   }
 
+  resetForm() {
+    this.meetingRegisterForm.reset();
+  }
+
   meetingTimeValidator (g: FormGroup) {
     return g.get('finishingTime').value > g.get('startingTime').value ? null : {'missmatch' : true};
   }

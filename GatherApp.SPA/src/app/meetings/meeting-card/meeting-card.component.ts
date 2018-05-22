@@ -14,7 +14,10 @@ export class MeetingCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  format(date) {
-    return new Date(date).toLocaleTimeString();
+  formatTime(date) {
+    const time: string[] = new Date(date).toLocaleTimeString().split(':');
+    const formatedTime = time[0] + ':' + time[1];
+    return formatedTime;
   }
+
 }
