@@ -34,8 +34,7 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    this.authService.userToken = null;
-    localStorage.removeItem('token');
+    this.authService.logout();
     this.alertify.message('Cya :)');
     this.router.navigate(['/home']);
   }
@@ -46,5 +45,6 @@ export class NavComponent implements OnInit {
 
   getUserName() {
     return  this.authService.decodedToken ? this.authService.decodedToken.unique_name : '';
+    // return this.authService.decodedToken.unique_name;
   }
 }

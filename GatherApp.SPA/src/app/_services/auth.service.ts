@@ -23,13 +23,21 @@ export class AuthService {
         const user = response.json();
         if (user && user.tokenString) {
           localStorage.setItem('token', user.tokenString);
-          localStorage.setItem('user', JSON.stringify(user.user));
+          localStorage.setItem('user', JSON.stringify(user));
           this.decodedToken = this.jwtHelper.decodeToken(user.tokenString);
           this.userToken = user.tokenString;
           this.currentUser = user.user;
         }
       })
       .catch(this.handleError);
+  }
+
+  logout() {
+    this.userToken = null;
+    this.currentUser = null;
+    this.decodedToken = null;
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
 
   loggedIn() {
