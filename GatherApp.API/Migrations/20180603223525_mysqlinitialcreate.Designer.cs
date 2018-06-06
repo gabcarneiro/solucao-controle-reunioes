@@ -11,13 +11,14 @@ using System;
 namespace GatherApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20180428174934_AddedMeetingsModel")]
-    partial class AddedMeetingsModel
+    [Migration("20180603223525_mysqlinitialcreate")]
+    partial class mysqlinitialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
                 .HasAnnotation("ProductVersion", "2.0.2-rtm-10011");
 
             modelBuilder.Entity("GatherApp.API.Models.Meeting", b =>

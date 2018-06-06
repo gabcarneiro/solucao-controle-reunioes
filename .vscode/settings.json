@@ -1,0 +1,29 @@
+{
+  "deploy": {
+    "packages": [
+      {
+        "name": "Version 1.0",
+        "description": "Gather App Version 1.0",
+        "files": ["GatherApp.API/bin/Debug/netcoreapp2.0/publish/**"]
+      }
+    ],
+    "targets": [
+      {
+        "type": "sftp",
+        "name": "Linux",
+        "description": "Remote Linux Server",
+        "dir": "/var/gatherapp",
+        "mappings": [
+            {
+                "source": "/GatherApp.API/bin/Debug/netcoreapp2.0/publish",
+                "target": "/"
+            }
+        ],
+        "host": "191.232.197.199",
+        "port": 22,
+        "user": "gatherapp", "password": "Gabagaba691007",
+        "checkBeforeDeploy": true
+      }
+    ]
+  }
+}
