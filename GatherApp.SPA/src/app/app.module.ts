@@ -28,6 +28,8 @@ import { ScheduleMeetingComponent } from './meetings/schedule-meeting/schedule-m
 import { RegisterUserComponent } from './admin/register-user/register-user.component';
 import { UserService } from './_services/user.service';
 import { MyMeetingsComponent } from './meetings/my-meetings/my-meetings.component';
+import { MeetingDetailsComponent } from './meetings/meeting-details/meeting-details.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { MyMeetingsComponent } from './meetings/my-meetings/my-meetings.componen
     MeetingCardComponent,
     AdminComponent,
     RegisterUserComponent,
-    MyMeetingsComponent
+    MyMeetingsComponent,
+    MeetingDetailsComponent,
+    AuthComponent
 ],
   imports: [
     BrowserModule,

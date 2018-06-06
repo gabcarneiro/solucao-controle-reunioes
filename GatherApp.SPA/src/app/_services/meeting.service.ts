@@ -17,6 +17,12 @@ export class MeetingService {
         .catch(this.handleError);
     }
 
+    getMeeting(id): Observable<Meeting> {
+      return this.authHttp.get(this.baseUrl + 'meeting/' + id)
+      .map(response => <Meeting>response.json())
+      .catch(this.handleError);
+  }
+
     getMeetingsByDay(date): Observable<Meeting[]> {
       return this.authHttp.post(this.baseUrl + 'meeting/day', date)
       .map(response => <Meeting[]>response.json())

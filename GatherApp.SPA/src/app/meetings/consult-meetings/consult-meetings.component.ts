@@ -48,9 +48,9 @@ export class ConsultMeetingsComponent implements OnInit {
   }
 
   getMeetingsByDay() {
-    console.log(new Date(this.daySelectorForm.get('day').value));
     this.meetingService.getMeetingsByDay(new Date(this.daySelectorForm.get('day').value)).subscribe((meetings: Meeting[]) => {
       this.meetings = meetings;
+      this.alertify.success('Ok!');
     }, error => {
       this.alertify.error(error);
     });
