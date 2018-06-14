@@ -1,5 +1,6 @@
 GatherApp.API/obj
 GatherApp.API/bin
+GatherApp.API/wwwroot
 GatherApp.API/.vscode
 GatherApp.API/*.db
 

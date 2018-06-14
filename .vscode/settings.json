@@ -4,7 +4,7 @@
       {
         "name": "Version 1.0",
         "description": "Gather App Version 1.0",
-        "files": ["GatherApp.API/bin/Debug/netcoreapp2.0/publish/**"]
+        "files": ["GatherApp.API/bin/published/**"]
       }
     ],
     "targets": [
@@ -12,14 +12,14 @@
         "type": "sftp",
         "name": "Linux",
         "description": "Remote Linux Server",
-        "dir": "/var/gatherapp",
+        "dir": "/home/gatherapp/gatherapp",
         "mappings": [
             {
-                "source": "/GatherApp.API/bin/Debug/netcoreapp2.0/publish",
+                "source": "/GatherApp.API/bin/published",
                 "target": "/"
             }
         ],
-        "host": "191.232.197.199",
+        "host": "191.239.244.235",
         "port": 22,
         "user": "gatherapp", "password": "Gabagaba691007",
         "checkBeforeDeploy": true

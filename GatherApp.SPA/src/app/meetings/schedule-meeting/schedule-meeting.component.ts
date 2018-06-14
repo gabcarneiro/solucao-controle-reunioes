@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Meeting } from '../../_models/Meeting';
 import { MeetingService } from '../../_services/meeting.service';
 import { AlertifyService } from '../../_services/alertify.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { BsDatepickerConfig, BsLocaleService } from 'ngx-bootstrap';
 @Component({
   selector: 'app-schedule-meeting',
@@ -38,25 +38,27 @@ export class ScheduleMeetingComponent implements OnInit {
       day: [null, Validators.required],
       startingTime: [null, Validators.required],
       finishingTime: [null, Validators.required]
-    }, this.meetingTimeValidator);
+    }, { validator: this.meetingTimeValidator });
   }
 
   scheduleMeeting() {
-    this.formatModel();
-    this.meetingService.registerMeeting(this.model).subscribe( () => {
-      this.alertify.success('Reunião agendada com sucesso!');
-      this.meetingRegisterForm.reset();
-    }, error => {
-      this.alertify.error(error);
-    });
+    if (this.meetingRegisterForm.valid) {
+      this.formatModel();
+      this.meetingService.registerMeeting(this.model).subscribe( () => {
+        this.alertify.success('Reunião agendada com sucesso!');
+        this.meetingRegisterForm.reset();
+      }, error => {
+        this.alertify.error(error);
+      });
+    }
   }
 
   resetForm() {
     this.meetingRegisterForm.reset();
   }
 
-  meetingTimeValidator (g: FormGroup) {
-    return g.get('finishingTime').value > g.get('startingTime').value ? null : {'missmatch' : true};
+  meetingTimeValidator (ac: AbstractControl) {
+    return ac.get('finishingTime').value > ac.get('startingTime').value ? null : {'invalidtime' : true};
   }
 
   formatModel() {

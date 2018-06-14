@@ -9,19 +9,34 @@
       </span>
     </div>
 
-    <div class="form-group" >
+    <div class="form-group" [ngClass]="{'has-error' : meetingRegisterForm.get('day').errors && meetingRegisterForm.get('day').touched}">
       <label for="day">Dia</label>
       <input type="text" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig" id="starting-time" class="form-control" formControlName="day" placeholder="Clique para selecionar um dia">
+      <span class="help-block" *ngIf="meetingRegisterForm.get('day').hasError('required') && meetingRegisterForm.get('day').touched">
+        Informe o dia da reunião
+      </span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [ngClass]="{'has-error' : meetingRegisterForm.get('startingTime').errors && meetingRegisterForm.get('startingTime').touched}">
       <label for="startingTime">Horario:</label>
       <input type="time" id="startingTime" class="form-control" formControlName="startingTime" min="07:30" max="18:00">
+      <span class="help-block" *ngIf="meetingRegisterForm.get('startingTime').hasError('required') && meetingRegisterForm.get('startingTime').touched">
+        Informe o horário de iníncio
+      </span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" [ngClass]="{'has-error' : meetingRegisterForm.get('finishingTime').errors 
+        && meetingRegisterForm.get('finishingTime').touched || meetingRegisterForm.get('finishingTime').touched
+        && meetingRegisterForm.hasError('invalidtime')}">
       <label for="finishingTime">Até:</label>
       <input type="time" id="finishingTime" class="form-control" formControlName="finishingTime"  min="07:30" max="18:00">
+      <span class="help-block" *ngIf="meetingRegisterForm.get('finishingTime').hasError('required') && meetingRegisterForm.get('finishingTime').touched">
+        Informe o horário limite
+      </span>
+      <span class="help-block" *ngIf="meetingRegisterForm.get('finishingTime').touched
+                                    && meetingRegisterForm.hasError('invalidtime')">
+        Horário inválido
+      </span>
     </div>
 
 
@@ -31,7 +46,4 @@
     </div>
   </form>
 
-  <p>Form value: {{meetingRegisterForm.value | json}}</p>
-  <p>Form status: {{meetingRegisterForm.status}}</p>
-  <p>Model: {{model | json}}</p>
 </div>

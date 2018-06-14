@@ -43,7 +43,7 @@ export class ConsultMeetingsComponent implements OnInit {
 
   createForm() {
     this.daySelectorForm = this.fb.group({
-      day: [null, Validators.required],
+      day: [new Date().toLocaleString(), Validators.required],
     });
   }
 

@@ -31,7 +31,7 @@ export class RegisterUserComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-    }, {validator: this.passwordMissmatchValidator});
+    }, { validator: this.passwordMissmatchValidator });
   }
 
   resetForm() {
@@ -41,17 +41,20 @@ export class RegisterUserComponent implements OnInit {
   formatModel() {
     this.model = this.userRegisterForm.value;
   }
+
   registerUser() {
-    this.userService.registerUser(this.userRegisterForm.value).subscribe( () => {
-      this.alertify.success('Usuário cadastrado com sucesso!');
-      this.userRegisterForm.reset();
-    }, error => {
-      this.alertify.error(error);
-    });
+    if (this.userRegisterForm.valid) {
+      this.userService.registerUser(this.userRegisterForm.value).subscribe( () => {
+        this.alertify.success('Usuário cadastrado com sucesso!');
+        this.userRegisterForm.reset();
+      }, error => {
+        this.alertify.error(error);
+      });
+    }
   }
 
-  passwordMissmatchValidator (AC: AbstractControl) {
-    return AC.get('password').value === AC.get('confirmPassword').value ? null : {'missmatch' : true};
+  passwordMissmatchValidator (ac: AbstractControl) {
+    return ac.get('password').value === ac.get('confirmPassword').value ? null : {'missmatch' : true};
   }
 
 }
