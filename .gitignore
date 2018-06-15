@@ -1,3 +1,5 @@
+.vscode
+
 GatherApp.API/obj
 GatherApp.API/bin
 GatherApp.API/wwwroot
